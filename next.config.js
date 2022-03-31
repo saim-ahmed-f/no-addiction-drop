@@ -1,6 +1,12 @@
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  images: {
+    domains: ['alcoban-vbk7q.ondigitalocean.app'],
+    
+  },
+  reactStrictMode: false,
 }
 
 module.exports = nextConfig
+
