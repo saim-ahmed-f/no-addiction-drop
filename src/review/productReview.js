@@ -94,7 +94,7 @@ export default function ProductReview({ reviewDetail }) {
 
   return (
     <>
-      <div style={{ marginLeft: "2%", marginRight: "2%" }}>
+      <div style={{ marginLeft: "2%", marginRight: "2%" }} id="reviews_section">
         <Typography
           variant="h4"
           className={Style.mainHeadingTypo}
@@ -204,7 +204,7 @@ export default function ProductReview({ reviewDetail }) {
 
       {/* mobile rating */}
 
-      <Grid className={`${Style.main_div_mobile}`} container spacing={0}>
+      <Grid className={`${Style.main_div_mobile}`} container spacing={0} id="reviews_section">
         <Grid
           item
           xs={12}

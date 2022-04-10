@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import toast from "../../../spinnerComponents/noitificationComp"
 
 export const getStaticProps = async () => {
-  const path = String(`https://alcoban-vbk7q.ondigitalocean.app/Orders/All Order/`);
+  const path = String(`https://alcoban-vbk7q.ondigitalocean.app/Orders/All%20Order/`);
 
   const res = await fetch(path);
   const OrderData = await res.json();
@@ -53,7 +53,7 @@ export default function AllOrders({ OrderDetails }) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-  }, []);
+  }, [router]);
 
   const updateOrderStatus = async (orderData) => {
     let userValues = localStorage.getItem("mainUserValue");

@@ -54,7 +54,7 @@ export default function ReturnedOrders({ OrderDetails }) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-  }, []);
+  }, [router]);
 
   const updateOrderStatus = async (orderData) => {
     let userValues = localStorage.getItem("mainUserValue");

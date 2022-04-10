@@ -32,12 +32,10 @@ export default function MyApp(props) {
   const [loading , setLoading] = React.useState(false)
 
   Router.events.on("routeChangeStart" , (url)=>{
-    
     setLoading(true)
   })
 
   Router.events.on("routeChangeComplete" , (url)=>{
-    
     setLoading(false)
   })
 

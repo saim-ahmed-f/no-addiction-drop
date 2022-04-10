@@ -62,7 +62,7 @@ export default function DeliveredOrders({OrderDetails}) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-  }, []);
+  }, [router]);
 
 
   const updateOrderStatus = async (orderData) => {

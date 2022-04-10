@@ -4,7 +4,7 @@ import Dashboard from "../../adminComponent/dashboard";
 
 import { useRouter } from "next/router";
 
-import getCookie from "../../csrfTokenFunc/gettingCookies"
+
 
 
 export const getStaticProps = async () => {
@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function adminPanal({ order_detail, OrderData }) {
+export default function AdminPanal({ order_detail, OrderData }) {
   const router = useRouter();
 
   
@@ -38,9 +38,8 @@ export default function adminPanal({ order_detail, OrderData }) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-    var csrftoken = getCookie('csrftoken'); 
-    console.log(csrftoken)
-  }, []);
+    
+  }, [router]);
 
   return (
     <div>

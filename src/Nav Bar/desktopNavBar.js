@@ -196,6 +196,9 @@ export default function MainNavBar({ mainHeading }) {
                 className={`${Style.nav_typo} `}
                 variant="h5"
                 color="secondary"
+                component={Link}
+                noLinkStyle
+                href="/#buy_section"
               >
                 Home
               </Typography>
@@ -204,6 +207,9 @@ export default function MainNavBar({ mainHeading }) {
                 className={`${Style.nav_typo} `}
                 variant="h5"
                 color="secondary"
+                component={Link}
+                noLinkStyle
+                href="/#about_section"
               >
                 About Us
               </Typography>
@@ -211,6 +217,9 @@ export default function MainNavBar({ mainHeading }) {
                 className={`${Style.nav_typo} `}
                 variant="h5"
                 color="secondary"
+                component={Link}
+                noLinkStyle
+                href="/#features_section"
               >
                 Features
               </Typography>
@@ -218,6 +227,9 @@ export default function MainNavBar({ mainHeading }) {
                 className={`${Style.nav_typo} `}
                 variant="h5"
                 color="secondary"
+                component={Link}
+                noLinkStyle
+                href="/#reviews_section"
               >
                 Reviews
               </Typography>

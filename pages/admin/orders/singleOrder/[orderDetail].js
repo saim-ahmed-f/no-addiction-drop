@@ -78,7 +78,7 @@ export default function BasicOrderDetail({OneOrderDetail , OneProductImg}) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-  }, []);  
+  }, [router]);  
 
   const updateHandler = async (status , awbNumber) =>{
 

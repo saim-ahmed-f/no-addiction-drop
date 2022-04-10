@@ -14,6 +14,8 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import UpgradeRoundedIcon from "@mui/icons-material/UpgradeRounded";
 import AddRoundedIcon from "@mui/icons-material/AddRounded";
 
+import toast from "../spinnerComponents/noitificationComp" 
+
 import { useState } from "react";
 
 const useStyle = makeStyles((theme) => ({
@@ -67,7 +69,7 @@ export default function ProductBenefits({ benefits , userToken}) {
     };
 
     const res = await fetch(
-      `http://127.0.0.1:8000/product_api/product_benefit_update/${item.id}/`,
+      `https://alcoban-vbk7q.ondigitalocean.app/product_api/product_benefit_update/${item.id}/`,
       {
         method: "POST",
         headers: {
@@ -78,6 +80,13 @@ export default function ProductBenefits({ benefits , userToken}) {
       }
     );
     
+    const call_result = await res.json()
+
+    if (call_result[0] == true){
+      toast({type : call_result[2] , message : call_result[1]})
+    }else{
+      toast({type : call_result[2] , message : call_result[1]})
+    }
 
   };
 
@@ -86,7 +95,7 @@ export default function ProductBenefits({ benefits , userToken}) {
     userValues = JSON.parse(userValues)
 
     const res = await fetch(
-      `http://127.0.0.1:8000/product_api/product_benefit_delete/${item.id}/`,
+      `https://alcoban-vbk7q.ondigitalocean.app/product_api/product_benefit_delete/${item.id}/`,
       {
         method: "DELETE",
         headers: {
@@ -96,10 +105,17 @@ export default function ProductBenefits({ benefits , userToken}) {
       }
     );
 
+    const call_result = await res.json()
 
+
+    if (call_result[0] == true){
+      toast({type : call_result[2] , message : call_result[1]})
+    }else{
+      toast({type : call_result[2] , message : call_result[1]})
+    }
     
     const values = [...benefit]
-    console.log(values.filter((val) => val.id != item.id))
+    
 
     setBenefit(values.filter((val) => val.id != item.id))
   };
@@ -119,7 +135,7 @@ export default function ProductBenefits({ benefits , userToken}) {
     };
 
     const res = await fetch(
-      "http://127.0.0.1:8000/product_api/product_benefit_create/",
+      "https://alcoban-vbk7q.ondigitalocean.app/product_api/product_benefit_create/",
       {
         method: "POST",
         headers: {
@@ -131,6 +147,13 @@ export default function ProductBenefits({ benefits , userToken}) {
     );
 
     const displayOutput = await res.json();
+
+
+    if (displayOutput[0] == true){
+      toast({type : displayOutput[2] , message : displayOutput[1]})
+    }else{
+      toast({type : displayOutput[2] , message : displayOutput[1]})
+    }
 
     setNewBenefit("");
 

@@ -10,6 +10,8 @@ import ProductHow from "./productHow";
 
 import {useRouter} from "next/router"
 
+import toast from "../spinnerComponents/noitificationComp"
+
 const useStyle = makeStyles((theme) => ({
   zero_padd_marg: {
     padding: "0%",
@@ -102,8 +104,13 @@ export default function DynamicProductUpdatePage({ productDetail }) {
       }
     );
     
-    
+    const call_result = await res.json()
 
+      if (call_result[0] == true){
+        toast({type : call_result[2] , message : call_result[1]})
+      }else{
+        toast({type : call_result[2] , message : call_result[1]})
+      }
 
   }
 

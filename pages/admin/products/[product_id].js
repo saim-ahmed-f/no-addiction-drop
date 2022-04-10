@@ -70,7 +70,7 @@ export default function Product({OneProductDetail}) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-  }, []);
+  }, [router]);
   
     
 

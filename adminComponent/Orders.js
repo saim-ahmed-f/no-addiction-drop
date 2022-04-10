@@ -43,9 +43,9 @@ export default function Orders({ order }) {
   
 
   const updateHandler = async (e , item) => {
+    
     let userValues = localStorage.getItem("mainUserValue");
     userValues = JSON.parse(userValues);
-
     const data = {
       id: item.id,
       order_date: item.order_date,
@@ -56,28 +56,31 @@ export default function Orders({ order }) {
       razorpay_order_id: item.razorpay_order_id,
       razorpay_payment_id: item.razorpay_payment_id,
       razorpay_signature: item.razorpay_signature,
-      product_id: item.product_id,
-      shipping_id: item.shipping_id,
+      product_id: item.product_id.id,
+      shipping_id: item.shipping_id.id,
+      product_awb_no : item.product_awb_no
     };
+
     const res = await fetch(
-      `http://127.0.0.1:8000/Orders/Update%20order/${item.id}/`,
+      `https://alcoban-vbk7q.ondigitalocean.app/Orders/Update%20order/${item.id}/`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Token ${userValues["token"]}`,
+          Authorization: `Token ${userValues["token"]}`,
         },
         body: JSON.stringify(data),
       }
     );
 
-    const responceData = await res.json()
+    const gettingstatus = await res.json()
     
-    if(responceData[0] === true){
-      toast({type : responceData[2] , message : responceData[1]})
+    if (gettingstatus[0] === true){
+      toast({type : gettingstatus[2] , message : gettingstatus[1]})
     }else{
-      toast({type : responceData[2] , message : responceData[1]})
+      toast({type : gettingstatus[2] , message : gettingstatus[1]})
     }
+    
   }
 
 

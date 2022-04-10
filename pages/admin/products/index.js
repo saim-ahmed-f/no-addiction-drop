@@ -52,8 +52,10 @@ export default function AllProducts({ AllProductDetail }) {
     } else if (Object.keys(userValues).length === 0) {
       router.push("/Login");
     }
-  }, []);
+  }, [router]);
 
+
+  console.log(AllProductDetail)
 
   return (
     <>

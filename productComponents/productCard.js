@@ -52,7 +52,7 @@ export default function ProductCard({product}){
 
     const Style = useStyle()
 
-    console.log(product)
+   
 
 
     const priceValue = (price) => { 

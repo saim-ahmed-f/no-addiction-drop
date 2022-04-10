@@ -40,7 +40,7 @@ const useStyle = makeStyles((theme) => ({
 export default function ProductView({ product }) {
 
     const Style = useStyle()
-
+    
   return (<>
     <Grid className={`${Style.zero_mag_padd} ${Style.main_grid_container}`} container spacing={0}>
       <Grid  className={`${Style.zero_mag_padd} ${Style.grid_siez_50} `}  item   xl={4}>

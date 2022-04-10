@@ -9,6 +9,8 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 
 import { useState } from "react";
 
+import toast from "../spinnerComponents/noitificationComp" 
+
 const useStyle = makeStyles((theme) => ({
   zero_mag_pad: {
     padding: "0%",
@@ -60,7 +62,7 @@ export default function ProductWhy({ why }) {
       };
   
       const res = await fetch(
-        `http://127.0.0.1:8000/product_api/product_why_update/${item.id}/`,
+        `https://alcoban-vbk7q.ondigitalocean.app/product_api/product_why_update/${item.id}/`,
         {
           method: "POST",
           headers: {
@@ -70,6 +72,15 @@ export default function ProductWhy({ why }) {
           body: JSON.stringify(data),
         }
       );
+
+      const call_result = await res.json()
+
+      if (call_result[0] == true){
+        toast({type : call_result[3] , message : call_result[2]})
+      }else{
+        toast({type : call_result[3] , message : call_result[2]})
+      }
+
     }
 
 
@@ -78,7 +89,7 @@ export default function ProductWhy({ why }) {
       let userValues = localStorage.getItem("mainUserValue")
       userValues = JSON.parse(userValues) 
       const res = await fetch(
-        `http://127.0.0.1:8000/product_api/product_why_delete/${item.id}/`,
+        `https://alcoban-vbk7q.ondigitalocean.app/product_api/product_why_delete/${item.id}/`,
         {
           method: "DELETE",
           headers: {
@@ -89,6 +100,15 @@ export default function ProductWhy({ why }) {
       );
       const values = [...benefit]
       setBenefit(values.filter((val) => val.id != item.id))
+      
+      const call_result = await res.json()
+
+      if (call_result[0] == true){
+        toast({type : call_result[2] , message : call_result[1]})
+      }else{
+        toast({type : call_result[2] , message : call_result[1]})
+      }
+      
     }
 
 
@@ -109,7 +129,7 @@ export default function ProductWhy({ why }) {
       };
   
       const res = await fetch(
-        "http://127.0.0.1:8000/product_api/product_why_create/",
+        "https://alcoban-vbk7q.ondigitalocean.app/product_api/product_why_create/",
         {
           method: "POST",
           headers: {
@@ -121,6 +141,12 @@ export default function ProductWhy({ why }) {
       );
   
       const displayOutput = await res.json();
+
+      if (displayOutput[0] == true){
+        toast({type : displayOutput[3] , message : displayOutput[2]})
+      }else{
+        toast({type : displayOutput[3] , message : displayOutput[2]})
+      }
       
       setNewBenefit("");
   

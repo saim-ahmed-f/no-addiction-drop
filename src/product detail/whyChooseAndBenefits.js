@@ -52,7 +52,7 @@ export default function WhyChooseAndBenefits({ productDetails }) {
     ));
   };
 
-  //console.log(productDetails.product_benefit[0].product_benefit);
+  
 
   return (
     <>
@@ -60,6 +60,7 @@ export default function WhyChooseAndBenefits({ productDetails }) {
         className={`${Style.zero_padd_mag} ${Style.main_grid} `}
         container
         spacing={0}
+        id="features_section"
       >
         <Grid
           item

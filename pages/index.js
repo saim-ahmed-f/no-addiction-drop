@@ -34,7 +34,7 @@ export const getStaticProps = async () => {
 };
 
 export default function Index({ product_detail, review_detail }) {
-  console.log(product_detail)
+
 
   return (
     <Container

@@ -48,7 +48,7 @@ export default function ProductAboutSection({ productDetails }) {
   const Style = useStyle();
 
   return (<>
-    <Grid className={`${Style.zero_mag_padd} ${Style.main_grid}`} container spacing={0}>
+    <Grid className={`${Style.zero_mag_padd} ${Style.main_grid}`} container spacing={0} id="about_section">
       <Grid
         item
         className={`${Style.zero_mag_padd} ${Style.first_grid} `}
@@ -74,7 +74,7 @@ export default function ProductAboutSection({ productDetails }) {
 
     {/* Mobile View */}
 
-    <Grid className={`${Style.zero_mag_padd} ${Style.main_grid_mobile}`} container spacing={0}>
+    <Grid className={`${Style.zero_mag_padd} ${Style.main_grid_mobile}`} container spacing={0} id="about_section">
     <Grid
         item
         className={`${Style.zero_mag_padd} ${Style.second_grid} `}
@@ -91,6 +91,7 @@ export default function ProductAboutSection({ productDetails }) {
         xs={12}
         sm={12}
         xl={6}
+        id="about_section"
       >
         <Typography className={Style.productHeadingTypo} variant="h4" color="primary">
           About {productDetails.product_name}
