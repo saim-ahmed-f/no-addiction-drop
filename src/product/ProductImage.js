@@ -62,6 +62,8 @@ export default function ProductImageView({ images }) {
     setSelect(index);
   };
 
+  
+
   return (<>
       <div className={`${Style.zero_padding_marg}  ${Style.main_grid} `}>
         <div className={`${Style.zero_padding_marg}  ${Style.first_grid}`}>

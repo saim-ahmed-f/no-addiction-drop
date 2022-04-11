@@ -118,7 +118,7 @@ export default function Orders({ order }) {
                 <TableCell align="center">{new Date(item.order_date).toDateString()}</TableCell>
                 <TableCell align="center">{item.product_id.product_name}</TableCell>
                 <TableCell align="center">{item.shipping_id.address}</TableCell>
-                <TableCell align="center">{item.shipping_id.phone}</TableCell>
+                <TableCell align="center">{item.shipping_id.phone_no}</TableCell>
                 <TableCell align="center">{item.payment_method === true ? "Online" : "COD"}</TableCell>
                 <TableCell align="center"><div style={{alignItems : "center"}}><CurrencyRupeeRoundedIcon className={Style.mainicons} fontSize="small"/> {`${item.total_value}`}</div></TableCell>
                 <TableCell align="center">

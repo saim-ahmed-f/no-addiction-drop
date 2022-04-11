@@ -161,6 +161,7 @@ export default function SingleOrderDetail({
     );
   };
 
+
   return (
     <>
       <Typography variant="h5" className={Style.main_typo} color="primary">
@@ -657,7 +658,7 @@ export default function SingleOrderDetail({
               className={Style.deatil_typo}
               color="primary"
             >
-              {order.shipping_id.phone}
+              {order.shipping_id.phone_no}
             </Typography>
           </Grid>
           <Grid

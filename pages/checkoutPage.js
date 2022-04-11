@@ -1,8 +1,6 @@
 import * as React from "react";
 import Container from "@mui/material/Container";
 
-
-
 import NextLink from "next/link";
 
 import { useState, useEffect } from "react";
@@ -67,17 +65,38 @@ export default function CheckoutPage({ product_detail }) {
     setPostValue(values);
   };
 
+
+  const phoneValidator = (phone_number) => {
+    const lengthOfNumber = String(phone_number).length
+    if (lengthOfNumber === 10){
+      return [true , String(phone_number)]
+    }else if (lengthOfNumber === 12){
+      return [true , String(phone_number).slice(2)]
+    }else if (lengthOfNumber === 13){
+      return [true , String(phone_number).slice(3)]
+    }
+    return [false]
+  }
+
   const CreateOrder = async (
     paymentCredential,
-    placeOrder,
+    placeOrder = false,
     collectingAllData = null
   ) => {
+
+    const validatingNumber = phoneValidator(postValue.phone_no)
+    if (validatingNumber[0] === false){
+      toast({ type: "error", message: "Please enter valid phone number !!!" });
+      return false
+    }
+    
+
     const genrateName = postValue.first_name + " " + postValue.last_name;
 
     const shipData = {
       name: genrateName,
       email: postValue.email_id,
-      phone: String(postValue.phone_no),
+      phone_no: validatingNumber[1],
       address: postValue.address,
       city: postValue.city,
       pincode: postValue.pincode,
@@ -85,7 +104,7 @@ export default function CheckoutPage({ product_detail }) {
     };
 
     if (
-      shipData.phone.trim() === "" ||
+      shipData.phone_no.trim() === "" ||
       shipData.email.trim() === "" ||
       shipData.address.trim() === "" ||
       shipData.pincode === "" ||
@@ -93,9 +112,10 @@ export default function CheckoutPage({ product_detail }) {
       shipData.state.trim() === ""
     ) {
       toast({ type: "error", message: "Please fill all Fields !!!" });
-
       return false;
     }
+
+
 
     const shipRes = await fetch(
       `https://alcoban-vbk7q.ondigitalocean.app/product_shipping_detail/create_shipping_detail/`,
@@ -111,6 +131,8 @@ export default function CheckoutPage({ product_detail }) {
     const shippingId = await shipRes.json();
 
 
+    {/*placeOrder*/}
+
     if (shippingId[0] === true) {
       const amountGenrate =
         paymentCredential.paymentType === "Online"
@@ -120,7 +142,7 @@ export default function CheckoutPage({ product_detail }) {
             product_detail.delivery_charge;
 
       const data = {
-        payment_method: placeOrder,
+        payment_method: paymentCredential.paymentType === "Online" ? true : false ,
         quantity: 1,
         total_value: amountGenrate,
         order_states: "Pending",
@@ -168,19 +190,25 @@ export default function CheckoutPage({ product_detail }) {
 
   const postDataFunc = async (placeOrder, paymentCredential) => {
 
+    const validatingNumber = phoneValidator(postValue.phone_no)
+    if (validatingNumber[0] === false){
+      toast({ type: "error", message: "Please enter valid phone number !!!" });
+      return false
+    }
+
     const genrateNameForCheck = postValue.first_name + " " + postValue.last_name;
 
     const chechDeatils = {
       name: genrateNameForCheck,
       email: postValue.email_id,
-      phone: String(postValue.phone_no),
+      phone_no: validatingNumber[1],
       address: postValue.address,
       city: postValue.city,
       pincode: postValue.pincode,
       state: postValue.state,
     };
 
-    if(chechDeatils.phone.trim() === "" || chechDeatils.email.trim() === ""){
+    if(chechDeatils.phone_no.trim() === "" || chechDeatils.email.trim() === ""){
       toast({ type: "error", message: "Fill all the detail !!!" });
       return false
     }
@@ -228,7 +256,7 @@ export default function CheckoutPage({ product_detail }) {
           collectingAllData.push(response.razorpay_signature);
           const responseForRedirect = await CreateOrder(
             paymentCredential,
-            placeOrder,
+            true,
             collectingAllData
           );
           if (responseForRedirect === true) {
@@ -238,7 +266,7 @@ export default function CheckoutPage({ product_detail }) {
         prefill: {
           name: genrateName,
           email: postValue.email_id,
-          phone_number: postValue.phone_no,
+          phone_number: validatingNumber[1],
         },
       };
       const paymentObject = new window.Razorpay(options);
